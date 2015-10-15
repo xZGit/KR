@@ -65,7 +65,7 @@ export default (options) => {
 
     plugins: [
       new webpack.PrefetchPlugin("react"),
-      new webpack.PrefetchPlugin("react-bootstrap"),
+      //new webpack.PrefetchPlugin("react-bootstrap"),
       new webpack.PrefetchPlugin("react-router"),
       new webpack.PrefetchPlugin("react/lib/ReactComponentBrowserEnvironment"),
       new webpack.DefinePlugin({
