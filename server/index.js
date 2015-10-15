@@ -30,12 +30,15 @@ var app = koa();
 require("./koa")(app, config);
 
 require("./response")(app, config);
-// Routes
-//require("./routes")(app);
 
-import renderRoute from "./renderRoutes" ;
 
-renderRoute(app);
+
+ //Routes
+require("./routes")(app);
+
+//import renderRoute from "./renderRoutes" ;
+//
+//renderRoute(app);
 
 
 export default app;

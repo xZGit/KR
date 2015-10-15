@@ -13,7 +13,24 @@ const config = new Map();
 
 config.set('server_host',  'localhost');
 config.set('server_port',  process.env.PORT || 3000);
-config.set('root',  path.normalize(path.join(__dirname, "/..")));
+config.set('root', path.resolve(__dirname, '../'));
+
+
+
+
+const paths = (() => {
+    const base    = [config.get('root')],
+        resolve = path.resolve;
+
+    const project = (...args) => resolve.apply(resolve, [...base, ...args]);
+
+    return {
+        project : project
+    };
+})();
+
+config.set('utils_paths', paths);
+
 
 export default config;
 //"use strict";
