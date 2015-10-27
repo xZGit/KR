@@ -19,15 +19,13 @@ var Header = React.createClass({
     render() {
 
         return (
-            <header className="hero hero--profile">
-                <div className="hero-avatar">
-                    <div className="avatar">
+            <div className="header-div-top">
+                <div className="header-div-avatar">
                         <img src={this.props.headImg}
-                              className="avatar-image avatar-image--large imagePicker-target" alt={this.props.name}/>
-                        </div>
+                              className="header-image" alt={this.props.name}/>
                     </div>
                     <h1 className="hero-title">{this.props.name}</h1>
-                </header>
+                </div>
 
            );
     }

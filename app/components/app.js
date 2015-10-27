@@ -18,21 +18,20 @@ var App = React.createClass({
         var name="xunny";
         return (
         <div className="site-main">
+            <Navbar/>
             <Surface url={bgUrl}/>
-            <div className="u-sizeFullHeight u-clearfix">
-                <Navbar/>
-                <div className="u-backgroundWhite u-foreground">
-                   <Header name={name} headImg={headImg}/>
-                    <div className="blockDivider ">
-                            <Link className="blockDivider-name"to="/">latest stories</Link>
-                            <Link className="blockDivider-name" to="/about">latest photos</Link>
-                   </div>
-                   <div>
-                       {this.props.children || <Articles />}
-                  </div>
+            <Header name={name} headImg={headImg}/>
 
-                    </div>
-          </div>
+            <div className="menu">
+                <Link className="link" to="/">latest stories</Link>
+                <Link className="link" to="/about">latest photos</Link>
+            </div>
+            <div>
+
+             {this.props.children || <Articles />}
+             </div>
+
+
         </div>
     );
     }
