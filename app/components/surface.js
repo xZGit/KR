@@ -18,13 +18,10 @@ var Surface = React.createClass({
             backgroundImage: 'url(' + url + ')',
         };
         return (
-            <div className="surface">
-                <div id="prerendered" className="screenContent">
-                    <div className="imageBleed imageBleed--header">
-                        <div className="imageBleed-src"
-                             style={divStyle}></div>
-                    </div>
-                </div>
+            <div className="surface-div-top">
+              <div className="imageBleed-src"
+                   style={divStyle}>
+               </div>
             </div>
         );
     }

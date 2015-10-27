@@ -23,12 +23,13 @@ var Article = React.createClass({
     render() {
 
         return (
-            <div className="article-meta">
+            <div className="article-div-signle">
                 <AuthorBar author={this.props.article.author} headImg={this.props.article.headImg} create_time={this.props.article.create_time} />
                 <div>
                     <div><h1 className="title-h">{this.props.article.title}</h1></div>
                     <div><h1 className="">{this.props.article.introduce}</h1></div>
                 </div>
+                <hr className="article-hr"/>
             </div>
 
         );

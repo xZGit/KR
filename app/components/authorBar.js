@@ -25,8 +25,8 @@ var AuthorBar = React.createClass({
                              className="avatar-img-author" alt={this.props.headImg}/>
                     </div>
                     <div className="info-div-author">
-                    <div><a className="name-a-author">{this.props.author}</a></div>
-                    <div><p className="time-p-author">{this.props.create_time}</p></div>
+                       <a className="author-a-name">{this.props.author}</a>
+                       <span className="author-p-time">{this.props.create_time}</span>
                     </div>
             </div>
 
