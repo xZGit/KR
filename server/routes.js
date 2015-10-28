@@ -18,6 +18,7 @@ module.exports = function (app) {
 
 
     router.get("/", controller.index);
+    router.get("/articles",controller.getArticles);
     app.use(router.routes())
         .use(router.allowedMethods());
 };
