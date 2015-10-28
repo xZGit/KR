@@ -30,8 +30,6 @@ var App = React.createClass({
 
              {this.props.children || <Articles />}
              </div>
-
-
         </div>
     );
     }
