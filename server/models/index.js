@@ -8,11 +8,12 @@ var mongoose = require('mongoose');
 var util = require('util');
 var logger = require("../../logger").getLogger(module);
 
-module.exports = function (config) {
 
-    var connection = mongoose.connect(config.mongo.url, function (err) {
+module.exports = function (url) {
+
+    var connection = mongoose.connect(url, function (err) {
         if (err) {
-            console.error('connect to %s error: ', config.db, err.message);
+            console.error('connect to %s error: ', url, err.message);
             process.exit(1);
         }
     }).connection;
@@ -26,7 +27,12 @@ module.exports = function (config) {
         return util.inspect(obj, false, 10, true).replace(/\n/g, '').replace(/\s{2,}/g, ' ');
     };
 // models
+
+
+
     require('./record');
+
+
     return connection;
 };
 

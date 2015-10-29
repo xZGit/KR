@@ -10,6 +10,7 @@ import Header from './header';
 import Articles from './articles';
 
 
+
 var App = React.createClass({
 
     render() {
@@ -21,7 +22,6 @@ var App = React.createClass({
             <Navbar/>
             <Surface url={bgUrl}/>
             <Header name={name} headImg={headImg}/>
-
             <div className="menu">
                 <Link className="link" to="/">latest stories</Link>
                 <Link className="link" to="/about">latest photos</Link>
