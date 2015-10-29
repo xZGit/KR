@@ -10,12 +10,12 @@ import path     from 'path';
 
 const config = new Map();
 
-
+config.set('env',process.env.NODE_ENV);
 config.set('server_host',  'localhost');
 config.set('server_port',  process.env.PORT || 3000);
 config.set('root', path.resolve(__dirname, '../'));
-
-
+config.set('key','kr');
+config.set('mongoUrl',"mongodb://ddexpertAdmin:sdhz123@ds047782.mongolab.com:47782/ddexpert");
 
 
 const paths = (() => {
