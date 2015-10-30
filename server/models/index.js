@@ -30,7 +30,7 @@ module.exports = function (url) {
 
 
 
-    require('./record');
+    require('./user');
 
 
     return connection;
