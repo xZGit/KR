@@ -4,6 +4,8 @@ var router = require("koa-router")();
 
 var controller = require("./controllers/index");
 
+import SignCtrl from './controllers/sign';
+
 
 module.exports = function (app) {
     // register functions
@@ -12,13 +14,22 @@ module.exports = function (app) {
 
     function setUpPageRoute(url) {
         var funcs = Array.prototype.slice.call(arguments, 1);
-        router.get.apply(router, [url].concat(funcs));
-        router.get.apply(router, ["/api" + url].concat(funcs))
+        router.get(...[url].concat(funcs));
+        router.get(...["/api" + url].concat(funcs))
     };
 
 
     router.get("/", controller.index);
     router.get("/articles",controller.getArticles);
+
+
+
+    router.post("/signIn", SignCtrl.signIn);
+
+
+
+
+
     app.use(router.routes())
         .use(router.allowedMethods());
 };

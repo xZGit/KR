@@ -7,7 +7,7 @@
 
 import React, { PropTypes } from 'react';
 import Article from './article';
-import Request from '../mixins/request';
+import Request from '../common/request';
 import {ScrollBlocker, ScrollListenerMixin}  from 'react-scroll-components';
 
 

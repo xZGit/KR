@@ -41,7 +41,8 @@ module.exports = function (app, config) {
                 template = errorTemplate;
                 logger.error(result.error);
             }
-            if (this.isApi) {
+
+            if (this.isApi || this.request.method==="POST" ) {
                 return result;
             }
             return yield this.processRender(template, code == 0 ? data : result);
@@ -61,7 +62,7 @@ module.exports = function (app, config) {
             } catch (err) {
 
                 this.status = err.status || 500;
-
+                console.log("Err"+err);
                 logger.error(err.message, err.stack);
 
                 var template = errorTemplate;
