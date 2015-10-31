@@ -4,7 +4,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var  bcrypt = require('co-bcrypt');
-
+var co = require('co');
 /**
  * Schema
  */
@@ -14,13 +14,10 @@ var UserSchema = new Schema({
     headImg: { type: String},
     bgImg:  {type: Number},
     email:  {type: String, required: true, unique:true},
-    pass:  {type: String, required: true},
+    password:  {type: String, required: true},
     create_time: {type: Date, default: Date.now },
     updated: { type: Date, default: Date.now },
 });
-
-
-
 
 
 /**
@@ -33,7 +30,6 @@ UserSchema.pre("save", function (done) {
     if (!this.isModified("password")) {
         return done();
     }
-
     co.wrap(function*() {
         try {
             var salt = yield bcrypt.genSalt(10);
@@ -42,6 +38,7 @@ UserSchema.pre("save", function (done) {
             done();
         }
         catch (err) {
+            console.log(err);
             done(err);
         }
     }).call(this).then(done);
@@ -50,24 +47,31 @@ UserSchema.pre("save", function (done) {
 /**
  * Methods
  */
-UserSchema.methods.comparePassword = function *(candidatePassword) {
-    return yield bcrypt.compare(candidatePassword, this.password);
-};
 
+UserSchema.methods.passwordMatches = function *(password) {
+    return yield bcrypt.compare(password, this.password);
+};
 /**
  * Statics
  */
 
-UserSchema.statics.passwordMatches = function *(username, password) {
-    var user = yield this.findOne({ username: username.toLowerCase() }).exec();
-    if (!user) {
-        throw new Error("User not found");
-    }
 
-    if (yield user.comparePassword(password)) {
-        return user;
-    }
 
-    throw new Error("Password does not match");
+
+UserSchema.statics.findOneByEmail = function *(email) {
+    return yield this.findOne({email: email}).exec();
 };
+
+
+
+UserSchema.statics.saveNew = function *(email, password) {
+    var User = this;
+    var newUser = new User({ email: email, password: password });
+    yield newUser.save();
+};
+
+
+
+
+
 mongoose.model("User", UserSchema);

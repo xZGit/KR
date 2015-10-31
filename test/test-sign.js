@@ -7,15 +7,35 @@ var request = require('./init');
 var should  = require('should');
 
 
-describe('Test getResult', function () {
+describe('Test sign func', function () {
     this.timeout(10000);
-    var url="/signIn";
+    var URLS = {
+        AUTH: "/auth",
+        SIGN_UP: "/signUp",
+        SIGN_IN: "/signIn",
+        SIGN_OUT: "/signout"
+    };
 
-    it('return success', function (done) {
+    it('test signUp and return success', function (done) {
 
-        var req = request.post(url);
+        var req = request.post(URLS.SIGN_UP);
         req.send({
-            email:"418760128@qq.com",
+            email:"4187601280@qq.com",
+            password:"123456",
+        })
+            .end(function (err, res) {
+                console.log(res.body);
+                done();
+            });
+    });
+
+
+
+    it('test signIn and return success', function (done) {
+
+        var req = request.post(URLS.SIGN_IN);
+        req.send({
+            email:"4187601280@qq.com",
             password:"123456",
         })
             .end(function (err, res) {

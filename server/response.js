@@ -29,12 +29,14 @@ module.exports = function (app, config) {
                 locals: {}
             });
             this.render = function *(code, data, template) {
+
                 if (typeof code != "number") {
                     template = data;
-                data = code;
-                code = 0;
-            }
+                    data = code;
+                    code = 0;
+                    }
             var result = {code: code};
+
             if (data) result.data = data;
             if (code != 0) {
                 result.error = codeMapMsg[code] || "unrecongize error";
@@ -43,6 +45,7 @@ module.exports = function (app, config) {
             }
 
             if (this.isApi || this.request.method==="POST" ) {
+
                 return result;
             }
             return yield this.processRender(template, code == 0 ? data : result);
@@ -62,7 +65,6 @@ module.exports = function (app, config) {
             } catch (err) {
 
                 this.status = err.status || 500;
-                console.log("Err"+err);
                 logger.error(err.message, err.stack);
 
                 var template = errorTemplate;
@@ -72,7 +74,7 @@ module.exports = function (app, config) {
 
                 var result = {code: err.code || this.status, error: err.message};
 
-                if (this.isApi) {
+                if (this.isApi || this.request.method==="POST") {
                     return this.body = result;
                 }
 

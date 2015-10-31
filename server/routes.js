@@ -25,7 +25,7 @@ module.exports = function (app) {
 
 
     router.post("/signIn", SignCtrl.signIn);
-
+    router.post("/signUp", SignCtrl.signUp);
 
 
 
