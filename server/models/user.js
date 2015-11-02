@@ -66,7 +66,7 @@ UserSchema.statics.findOneByEmail = function *(email) {
 
 UserSchema.statics.saveNew = function *(email, password) {
     var User = this;
-    var newUser = new User({ email: email, password: password });
+    var newUser = new User({ email: email, nickname:email, password: password });
     yield newUser.save();
 };
 

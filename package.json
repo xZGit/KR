@@ -37,6 +37,7 @@
   "dependencies": {
     "bootstrap": "*",
     "co": "*",
+    "co-bcrypt": "1.0.0",
     "co-views": "*",
     "koa": "*",
     "koa-bodyparser": "*",

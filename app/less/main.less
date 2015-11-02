@@ -3,11 +3,26 @@
 @import "header";
 @import "article";
 @import "sign";
+@import "msgTip";
 
-body {
-  display: block;
-  margin: 0;
-}
+*{font-family:'微软雅黑',arial, sans-serif,"Open Sans",sans-serif;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,img{padding:0;margin:0;}
+body{ color:#777; font-size:14px;font-family: "微软雅黑",Verdana,Arial,Helvetica,sans-serif;word-wrap: break-word;/*-----word-wrap : normal !important;----*/_background-attachment:fixed; /* for IE6 */}
+table{border-collapse:collapse;border-spacing:0;max-width:100%;}
+td{word-wrap: break-word;}
+table td{padding:7px 15px;line-height:21px;}
+fieldset,img{border:0}
+address,caption,cite,code,dfn,em,th,var{font-weight:normal;font-style:normal}
+ol,ul,li{list-style:none}
+caption,th{text-align:left}
+h1,h2,h3,h4,h5,h6{font-weight:normal;}
+h1{font-size:25px}
+h2{font-size:21px}
+h3{font-size:18px}
+h4{font-size:16px;font-style:normal;}
+h5{font-size:14px;font-style:normal;}
+h6{font-size:12px;font-style:normal;}
+
 
 
 .site-main {
@@ -51,3 +66,46 @@ body {
    background: rgba(0,0,0,0.15);
 }
 
+
+button {
+  display: inline-block;
+  height: 37px;
+  line-height: 36px;
+  padding: 0 16px;
+  color: rgba(0,0,0,0.44);
+  background: rgba(0,0,0,0);
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.15);
+  vertical-align: middle;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-sizing: border-box;
+  border-radius: 999em;
+  font-family: -apple-system,".SFNSText-Regular","Helvetica Neue","Roboto","Segoe UI",sans-serif;
+  letter-spacing: 0;
+  font-weight: 400;
+  font-style: normal;
+}
+
+input{
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 0 15px;
+  height: 35px;
+  width: 20%;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+  appearance: none;
+  box-sizing: border-box;
+  font-family: -apple-system, ".SFNSText-Regular", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  letter-spacing: 0;
+  font-weight: 400;
+  font-style: normal;
+  border-radius: 999em;
+}

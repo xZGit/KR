@@ -8,7 +8,7 @@ import Surface from './surface';
 import Navbar from './navbar';
 import Header from './header';
 import Articles from './articles';
-
+import MsgTip  from './msgTip';
 
 
 var App = React.createClass({
@@ -19,6 +19,7 @@ var App = React.createClass({
         var name="xunny";
         return (
         <div className="site-main">
+            <MsgTip/>
             <Navbar/>
             <Surface url={bgUrl}/>
             <Header name={name} headImg={headImg}/>

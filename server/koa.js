@@ -22,7 +22,6 @@ module.exports = function (app, config) {
     }
 
     app.use(serve(path.join(config.get("root"), 'build', 'public'), SERVE_OPTIONS, STATIC_FILES_MAP));
-
     var db = require("./models")(config.get("mongoUrl"));
 
     app.use(session({
