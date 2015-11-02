@@ -17,10 +17,10 @@ Sign.signIn = function *() {
     pc.addNeedParam("password", "密码为空");
     var params = yield pc.check();
     var user = yield  User.findOneByEmail(params.email);
-    if(!user) return this.body = yield this.render(1002);
+    if(!user ||!user.password) return this.body = yield this.render(1002);
     var match = yield user.passwordMatches(params.password);
     if(!match) return this.body = yield this.render(1003);
-    this.body =yield this.render();
+    this.body = yield this.render(user);
 };
 
 
@@ -32,7 +32,7 @@ Sign.signUp = function *() {
     var user = yield User.findOneByEmail(params.email);
     if (user) return this.body = yield this.render(1001);
     yield User.saveNew(params.email, params.password);
-    this.body =yield this.render();
+    this.body = yield this.render();
 };
 
 
