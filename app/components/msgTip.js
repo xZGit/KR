@@ -48,7 +48,6 @@ var MsgTip = React.createClass({
                 background: this.state.type
             };
 
-            console.log(style);
             return (
                 <div className="msg-div-top">
                     <p className="msg-p-word" style={style}>{this.state.msg}</p><a onClick={this.clearAlert}

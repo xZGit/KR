@@ -5,7 +5,7 @@ var router = require("koa-router")();
 var controller = require("./controllers/index");
 
 import SignCtrl from './controllers/sign';
-
+import UserCtrl from './controllers/user';
 
 module.exports = function (app) {
     // register functions
@@ -27,7 +27,7 @@ module.exports = function (app) {
     router.post("/signIn", SignCtrl.signIn);
     router.post("/signUp", SignCtrl.signUp);
 
-
+    router.get("/userInfo/:id", UserCtrl.getUserInfo);
 
 
     app.use(router.routes())

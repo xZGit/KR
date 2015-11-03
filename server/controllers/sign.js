@@ -4,19 +4,18 @@
 
 
 var mongoose = require("mongoose");
-var User = mongoose.model("User");
-var ParamCheck = require('../common/paramCheck');
+var UserModel= mongoose.model("User");
 var validator = require('validator');
 
 var Sign = {};
 
 
 Sign.signIn = function *() {
-    var pc = new ParamCheck(this.request);
-    pc.addNeedParam("email", "邮箱错误", validator.isEmail);
-    pc.addNeedParam("password", "密码为空");
-    var params = yield pc.check();
-    var user = yield  User.findOneByEmail(params.email);
+
+    this.paramCheck.addNeedParam("email", "邮箱错误", validator.isEmail);
+    this.paramCheck.addNeedParam("password", "密码为空");
+    var params = yield this.paramCheck.check();
+    var user = yield  UserModel.findOneByEmail(params.email);
     if(!user ||!user.password) return this.body = yield this.render(1002);
     var match = yield user.passwordMatches(params.password);
     if(!match) return this.body = yield this.render(1003);
@@ -25,13 +24,12 @@ Sign.signIn = function *() {
 
 
 Sign.signUp = function *() {
-    var pc = new ParamCheck(this.request);
-    pc.addNeedParam("email", "邮箱错误", validator.isEmail);
-    pc.addNeedParam("password", "密码为空");
-    var params = yield pc.check();
-    var user = yield User.findOneByEmail(params.email);
+    this.paramCheck.addNeedParam("email", "邮箱错误", validator.isEmail);
+    this.paramCheck.addNeedParam("password", "密码为空");
+    var params = yield this.paramCheck.check();
+    var user = yield UserModel.findOneByEmail(params.email);
     if (user) return this.body = yield this.render(1001);
-    yield User.saveNew(params.email, params.password);
+    yield UserModel.saveNew(params.email, params.password);
     this.body = yield this.render();
 };
 

@@ -26,7 +26,6 @@ var Navbar = React.createClass({
     },
 
     updateUser(){
-        console.log("updaye");
         this.handleCloseSign();
         this.setState({user:AuthStore.getUser()});
     },

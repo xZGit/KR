@@ -2,7 +2,7 @@
  * Created by xx on 15/10/30.
  */
 
-//require('babel/register');
+
 var request = require('./init');
 var should  = require('should');
 
