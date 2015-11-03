@@ -8,7 +8,7 @@
 var codeMapMsg = require('./err').codeMapMsg;
 var views = require("co-views");
 var logger = require('../logger').getLogger(module);
-
+var ParamCheck = require('./common/paramCheck');
 /*
  * response middleware.
  */
@@ -23,6 +23,7 @@ module.exports = function (app, config) {
                 this.isApi = true;
             }
 
+            this.paramCheck = new ParamCheck(this);
             this.processRender = views(config.get("root") + "/server/views", {
                 map: {html: "swig"},
                 //cache: config.app.env === "development" ? false: "memory" ,

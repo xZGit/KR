@@ -4,17 +4,17 @@
 var _ = require('lodash');
 
 
-var ParamCheck = function (req) {
-    this.src = this.getParamFromReq(req);
+var ParamCheck = function (ctx) {
+    this.ctx = ctx;
     this.paramArr = [];
 };
 
 
-ParamCheck.prototype.getParamFromReq = function (req) {
-    req.params = req.params || {};
-    req.body = req.body || {};
-    req.query = req.query || {};
-    return _.merge(_.merge(req.params, req.body), req.query);
+ParamCheck.prototype.getParamFromReq = function () {
+    var ctx=this.ctx;
+    ctx.params = ctx.params || {};
+    ctx.request.body = ctx.request.body || {};
+    return _.merge(ctx.params, ctx.request.body);
 };
 
 
@@ -42,11 +42,12 @@ ParamCheck.prototype.addParam = function (key, errMsg, checkFunc, defaultValue, 
 
 ParamCheck.prototype.check = function () {
     var _self = this;
+    var src=this.getParamFromReq();
     return new Promise(function (resolve, reject) {
         var results = {};
         _.map(_self.paramArr, function (p) {
             if (!p.key)  return reject({message: p.errMsg});
-            var v = _self.src[p.key];
+            var v =src[p.key];
             if (v) {
                 if (p.checkFunc && typeof p.checkFunc === "function") {
                     if (!p.checkFunc.call(null, v)) {

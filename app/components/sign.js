@@ -33,7 +33,9 @@ var Sign = React.createClass({
         AuthStore.signIn(this.state.email, this.state.password, function(err, res){
              if(res.body  && res.body.error){
                  AlertStore.showWarn(res.body.error);
+                 return;
              }
+            AlertStore.showInfo("登录成功");
         })
     },
 

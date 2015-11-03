@@ -15,7 +15,7 @@ config.set('server_host',  'localhost');
 config.set('server_port',  process.env.PORT || 3000);
 config.set('root', path.resolve(__dirname, '../'));
 config.set('key','kr');
-config.set('mongoUrl',"mongodb://ddexpertAdmin:sdhz123@ds047782.mongolab.com:47782/ddexpert");
+config.set('mongoUrl',"mongodb://superuser:12345678@115.28.165.172/node_club_dev");
 
 
 const paths = (() => {
