@@ -12,7 +12,7 @@ var UserSchema = new Schema({
     nickname: { type: String },
     introduce:{ type: String },
     headImg: { type: String},
-    bgImg:  {type: Number},
+    bgImg:  {type: String},
     email:  {type: String, required: true, unique:true},
     password:  {type: String, required: true},
     create_time: {type: Date, default: Date.now },

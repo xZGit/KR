@@ -35,7 +35,7 @@ describe('Test sign func', function () {
 
         var req = request.post(URLS.SIGN_IN);
         req.send({
-            email:"1282932010@qq.com",
+            email:"4187601280@qq.com",
             password:"123456",
         })
             .end(function (err, res) {
@@ -47,3 +47,4 @@ describe('Test sign func', function () {
 
 
 });
+

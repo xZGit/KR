@@ -18,7 +18,7 @@ var App = React.createClass({
         <div className="site-main">
             <MsgTip/>
             <Navbar/>
-            <Header id="1000"/>
+            <Header id="563433f47296a08e030d629b"/>
             <div className="menu">
                 <Link className="link" to="/">latest stories</Link>
                 <Link className="link" to="/about">latest photos</Link>

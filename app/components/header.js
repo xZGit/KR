@@ -20,7 +20,9 @@ var Header = React.createClass({
 
     getInitialState: function() {
         return {
-                bgUrl: '',
+                editStatus: false,
+                loginUser:'',
+                bgImg: '',
                 name:'',
                 introduce:'',
                 headImg:''};
@@ -28,8 +30,18 @@ var Header = React.createClass({
 
 
     componentWillMount() {
-        Request.get("userInfo/"+this.props.id, function(){
-            console.log(arguments);
+        var ctx = this;
+        Request.get("userInfo/"+this.props.id, function(err, res){
+            if(res.body  && res.body.error){
+                AlertStore.showWarn(res.body.error);
+                return;
+            }
+            ctx.setState( {
+                bgImg: res.body.data.bgImg,
+                nickname:  res.body.data.nickname,
+                introduce: res.body.data.introduce,
+                headImg: res.body.data.headImg});
+
         })
     },
 
@@ -43,30 +55,65 @@ var Header = React.createClass({
     },
 
     updateUser(){
-        this.handleCloseSign();
-        this.setState({user:AuthStore.getUser()});
+
+        this.setState({loginUser:AuthStore.getUser()});
     },
 
+    edit(){
+        this.setState({editStatus:true});
+    },
+    isEditable(){
+        if(this.state.loginUser && this.state.loginUser.id && this.state.loginUser.id === this.props.id){
+            return <div className="header-div-edit"><a className="nav-btn-right nav-btn-margin header-div-edit" onClick={this.edit}>edit</a></div>
+        }
+    },
 
     render() {
-        var bgUrl="https://cdn-images-1.medium.com/freeze/fit/c/1600/1280/gradv/29/81/30/0*ZqLLu-QZiSqLiV4h.jpeg";
-        var headImg="https://cdn-images-1.medium.com/fit/c/120/120/1*G8MpQXgzgwK6PYjt4VVhfg.jpeg";
-        var name="xunny";
 
+       if(!this.state.editStatus){
+        var bgImg = this.state.bgImg;
+        var headImg = this.state.headImg;
+        var nickname =  this.state.nickname;
         return (
             <div>
-            <Surface url={bgUrl}/>
+            <Surface url={bgImg}/>
             <div className="header-div-top">
 
                 <div className="header-div-avatar">
                         <img src={headImg}
-                              className="header-image" alt={name}/>
+                              className="header-image" alt={nickname}/>
                     </div>
-                    <h1 className="hero-title">{name}</h1>
+                    <h1 className="hero-title">{nickname}</h1>
+                       {this.isEditable()}
                 </div>
+
             </div>
            );
+       }else{
+           var bgImg = this.state.bgImg;
+           var headImg = this.state.headImg;
+           var nickname =  this.state.nickname;
+           return (
+               <div>
+                   <Surface url={bgImg}/>
+                   <div className="header-div-top">
+
+                       <div className="header-div-avatar">
+                           <img src={headImg}
+                                className="header-image" alt={nickname}/>
+                       </div>
+                       <h1 className="hero-title">{nickname}</h1>
+                       <div className="header-div-edit">
+                           <a className="nav-btn-right nav-btn-margin header-div-edit" onClick={this.edit}>save</a>
+                           <a className="nav-btn-right nav-btn-margin header-div-edit" onClick={this.edit}>cancle</a>
+                       </div>
+                   </div>
+
+               </div>
+           );
+       }
     }
+
 });
 
 
