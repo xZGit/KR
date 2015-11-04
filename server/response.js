@@ -45,10 +45,11 @@ module.exports = function (app, config) {
                 logger.error(result.error);
             }
 
-            if (this.isApi || this.request.method==="POST" ) {
+            if (this.isApi || this.request.method==="POST" ||  !template) {
 
                 return result;
             }
+
             return yield this.processRender(template, code == 0 ? data : result);
             };
 
@@ -75,7 +76,7 @@ module.exports = function (app, config) {
 
                 var result = {code: err.code || this.status, error: err.message};
 
-                if (this.isApi || this.request.method==="POST") {
+                if (this.isApi || this.request.method==="POST" ||  !template) {
                     return this.body = result;
                 }
 

@@ -15,7 +15,7 @@ describe('Test user func', function () {
 
     it('test  GetUserInfo and return success', function (done) {
 
-        var req = request.get(URLS.GetUserInfo+"/1000");
+        var req = request.get(URLS.GetUserInfo+"/563433f47296a08e030d629b");
         req.send({})
             .end(function (err, res) {
                 console.log(res.body);
