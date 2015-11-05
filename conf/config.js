@@ -15,7 +15,7 @@ config.set('server_host',  'localhost');
 config.set('server_port',  process.env.PORT || 3000);
 config.set('root', path.resolve(__dirname, '../'));
 config.set('key','kr');
-config.set('mongoUrl',"mongodbUrl");
+config.set('mongoUrl',"mongodbUrl ");
 
 
 const paths = (() => {
