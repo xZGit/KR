@@ -26,11 +26,10 @@ var app = koa();
 
 require("./koa")(app, config);
 
-require("./response")(app, config);
+require("./middleware")(app, config);
 
  //Routes
 require("./routes")(app);
-
 
 
 

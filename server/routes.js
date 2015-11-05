@@ -6,6 +6,8 @@ var controller = require("./controllers/index");
 
 import SignCtrl from './controllers/sign';
 import UserCtrl from './controllers/user';
+import UploadCtrl from './controllers/upload';
+
 
 module.exports = function (app) {
     // register functions
@@ -29,6 +31,8 @@ module.exports = function (app) {
 
     router.get("/userInfo/:id", UserCtrl.getUserInfo);
 
+
+    router.post("/upload", UploadCtrl);
 
     app.use(router.routes())
         .use(router.allowedMethods());
