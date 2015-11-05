@@ -15,7 +15,7 @@ config.set('server_host',  'localhost');
 config.set('server_port',  process.env.PORT || 3000);
 config.set('root', path.resolve(__dirname, '../'));
 config.set('key','kr');
-config.set('mongoUrl',"mongodb://superuser:12345678@115.28.165.172/node_club_dev");
+config.set('mongoUrl',"mongodbUrl");
 
 
 const paths = (() => {
@@ -33,60 +33,3 @@ config.set('utils_paths', paths);
 
 
 export default config;
-//"use strict";
-//var path = require("path");
-//var _ = require("lodash");
-//
-//var env = process.env.NODE_ENV = process.env.NODE_ENV || "development";
-//
-//var base = {
-//    app: {
-//        root: path.normalize(path.join(__dirname, "/..")),
-//        env: env,
-//        //wechat info
-//        appId: "your wechat appid ",
-//        appsecret:"your app secret",
-//        redirectUrl: "",
-//        scope: "snsapi_userinfo",
-//        state: "",
-//
-//        //
-//        rate: 0.4
-//    },
-//};
-//
-//
-//var specific = {
-//    development: {
-//        app: {
-//            port: 3000,
-//            name: "cst - Dev",
-//            keys: ["super-secret-hurr-durr"],
-//        },
-//        mongo: {
-//            url: "mongodb://ddexpertAdmin:sdhz123@ds047782.mongolab.com:47782/ddexpert",
-//        },
-//    },
-//    test: {
-//        app: {
-//            port: 3001,
-//            name: "cst - Test realm",
-//            keys: ["super-secret-hurr-durr"],
-//        },
-//        mongo: {
-//            url: "mongodb://localhost/cst_test",
-//        },
-//    },
-//    production: {
-//        app: {
-//            port: process.env.PORT || 3000,
-//            name: "cst",
-//        },
-//        mongo: {
-//            url: "mongodb://localhost/cst",
-//        },
-//    },
-//};
-//
-//
-//module.exports = _.merge(base, specific[env]);
