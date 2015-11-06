@@ -25,7 +25,7 @@ var AuthStore = {
   },
   fetchUser: function () {
     request.get(URLS.AUTH, function (err, res) {
-        if (!err && res.body && res.body.data) {
+        if (!err && res.body && res.body.data && res.body.data._id) {
           _user = parseUser(res.body.data);
         }
         AuthStore.notifyChange();
