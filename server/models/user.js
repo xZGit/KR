@@ -17,6 +17,12 @@ var UserSchema = new Schema({
     password:  {type: String, required: true},
     create_time: {type: Date, default: Date.now },
     updated: { type: Date, default: Date.now },
+}, {
+    toJSON : {
+        transform: function (doc, ret, options) {
+            delete ret.password;
+        },
+    },
 });
 
 

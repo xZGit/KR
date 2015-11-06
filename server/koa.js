@@ -9,7 +9,7 @@ var compress = require("koa-compress");
 var bodyParser = require("koa-bodyparser");
 
 var STATIC_FILES_MAP = {};
-var SERVE_OPTIONS = {maxAge: 365 * 24 * 60 * 60};
+var SERVE_OPTIONS = {dynamic:true, maxAge: 365 * 24 * 60 * 60};
 
 module.exports = function (app, config) {
     if (!config.get("key")) {
@@ -21,13 +21,13 @@ module.exports = function (app, config) {
         app.use(logger());
     }
 
-    app.use(serve(path.join(config.get("root"), 'build', 'public'), SERVE_OPTIONS, STATIC_FILES_MAP));
+    app.use(serve(path.join(config.get("root"), 'public'), SERVE_OPTIONS, STATIC_FILES_MAP));
     var db = require("./models")(config.get("mongoUrl"));
 
     app.use(session({
-        key: "cst.sid",
         store: new MongoStore({db: db, ttl: 60 * 60 * 1000}), //1小时过期
     }));
+
 
     app.use(bodyParser());
     app.use(compress());

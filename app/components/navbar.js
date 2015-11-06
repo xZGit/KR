@@ -14,7 +14,7 @@ var Navbar = React.createClass({
     },
 
     componentWillMount() {
-        //AuthStore.init();
+        AuthStore.init();
     },
 
     componentDidMount() {

@@ -19,13 +19,17 @@ var User = {};
 
 
 User.getUserInfo = function *() {
-
     this.paramCheck.addNeedParam("id", "id错误", validator.isMongoId);
     var params = yield this.paramCheck.check();
     var user = yield  UserModel.findOneById(params.id);
-    user.password = null;
-    this.body = yield this.render(user);
+    this.body = yield this.render(user.toJSON());
 };
+
+
+
+
+
+
 
 
 

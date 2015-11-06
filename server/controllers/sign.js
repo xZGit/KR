@@ -19,7 +19,8 @@ Sign.signIn = function *() {
     if(!user ||!user.password) return this.body = yield this.render(1002);
     var match = yield user.passwordMatches(params.password);
     if(!match) return this.body = yield this.render(1003);
-    this.body = yield this.render(user);
+    this.session.user={_id:user._id, email:user.email, nickname:user.nickname};
+    this.body = yield this.render(user.toJSON());
 };
 
 
@@ -32,6 +33,12 @@ Sign.signUp = function *() {
     yield UserModel.saveNew(params.email, params.password);
     this.body = yield this.render();
 };
+
+
+Sign.auth = function *(){
+    this.body = yield this.render(this.session.user ? this.session.user:{});
+};
+
 
 
 export default Sign;

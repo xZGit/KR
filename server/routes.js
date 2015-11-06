@@ -28,6 +28,8 @@ module.exports = function (app) {
 
     router.post("/signIn", SignCtrl.signIn);
     router.post("/signUp", SignCtrl.signUp);
+    router.get("/auth", SignCtrl.auth);
+
 
     router.get("/userInfo/:id", UserCtrl.getUserInfo);
 
