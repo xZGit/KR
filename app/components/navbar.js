@@ -3,8 +3,11 @@
 import React, { PropTypes } from 'react';
 import Sign from './sign';
 import AuthStore from '../stores/auth';
+import { History } from 'react-router'
+
 
 var Navbar = React.createClass({
+    mixins: [ History ],
 
     getInitialState: function() {
         return {
@@ -33,6 +36,13 @@ var Navbar = React.createClass({
     handleSignClick(){
         this.setState({showSign:true});
     },
+    handleWriteNewClick(){
+        if(!this.state.user){
+           return this.handleSignClick();
+        }
+
+        this.history.pushState(null, '/newStory')
+    },
 
     handleCloseSign(){
         this.setState({showSign:false});
@@ -55,7 +65,7 @@ var Navbar = React.createClass({
                           type="search" placeholder="Search Medium"/>
                </div>
                <div className="nav-div-innerRight">
-                   <a className="nav-btn-right nav-btn-margin">Write a story</a>
+                   <a className="nav-btn-right nav-btn-margin" onClick={this.handleWriteNewClick}>Write a story</a>
                    <a className="nav-btn-right" onClick={this.handleSignClick}>{this.state.user.nickname}</a>
                </div>
            </div>
@@ -70,7 +80,7 @@ var Navbar = React.createClass({
                        type="search" placeholder="Search Medium"/>
             </div>
             <div className="nav-div-innerRight">
-                <a className="nav-btn-right nav-btn-margin">Write a story</a>
+                <a className="nav-btn-right nav-btn-margin" onClick={this.handleWriteNewClick}>Write a story</a>
                 <a className="nav-btn-right" onClick={this.handleSignClick}>Sign in / Sign up</a>
             </div>
         </div>

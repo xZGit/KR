@@ -4,6 +4,8 @@ import { Router, Route } from 'react-router';
 import React, { PropTypes } from "react";
 import Main  from './pages/main';
 import Personal  from './pages/personal';
+import NewStory  from './pages/newStory';
+
 
 const Message = React.createClass({
     render() {
@@ -37,7 +39,7 @@ var routes = (
     <Router>
         <Route path="/" component={Main}>
             <Route path="personal/:userId" component={Personal} />
-            <Route path="inbox" component={Inbox} />
+            <Route path="newStory" component={NewStory} />
                 {/* Add the route, nested where we want the UI to nest */}
                 <Route path="messages/:id" component={Message} />
         </Route>
